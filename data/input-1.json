@@ -1,0 +1,31 @@
+[
+    {
+        "Key": "A",
+        "Inputs": [
+            "C"
+        ],
+        "Outputs": [
+            "B",
+            "C"
+        ]
+    },
+    {
+        "Key": "B",
+        "Inputs": [
+            "A"
+        ],
+        "Outputs": [
+            "C"
+        ]
+    },
+    {
+        "Key": "C",
+        "Inputs": [
+            "B",
+            "C"
+        ],
+        "Outputs": [
+            "A"
+        ]
+    },
+]
