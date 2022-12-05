@@ -64,13 +64,15 @@ def page_rank(
     transitions_graph: list,
     teleportation: float = 0.15,
     max_iteration=100,
+    normalization=False
 ):
     for i in range(max_iteration):
         for node in networks:
-            pr = estimate_probability(
-                starting_node=node, networks=networks, transitions_graph=transitions_graph
-            )
-            print(f"#{i} => [Node: {node} / Page-Rank: {pr}]")
+            pr = estimate_probability(starting_node=node,
+                                      networks=networks, 
+                                      transitions_graph=transitions_graph, 
+                                      normalization=normalization)
+            print(f"#{i+1} => [Node: {node} / Page-Rank: {pr}]")
 
 
 def estimate_probability(
@@ -78,6 +80,7 @@ def estimate_probability(
     networks: list,
     transitions_graph: list,
     teleportation: float = 0.15,
+    normalization=False
 ):
     related_nodes_sum = 0.0
     starting_transition_graph = search(transitions_graph, Key=starting_node)
@@ -87,6 +90,18 @@ def estimate_probability(
         related_nodes_sum = related_nodes_sum + page_ranks[node] / output_nodes_length
 
     pr = (teleportation / len(networks)) + (1 - teleportation) * related_nodes_sum
+    if(normalization):
+        pr = pr / len(networks)
     page_ranks[starting_node] = pr
     return pr
+
+
+if __name__ == "__main__":
+    page_rank(
+        networks=networks,
+        transitions_graph=transitions_graph,
+        teleportation=TELEPORTATION,
+        normalization=True
+    )
+
 ```
