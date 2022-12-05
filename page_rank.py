@@ -1,8 +1,3 @@
-import random
-import pandas as pd
-import numpy as np
-
-
 TELEPORTATION = 0.15
 
 networks = ["A", "B", "C"]
@@ -34,7 +29,7 @@ def page_rank(
             pr = estimate_probability(
                 starting_node=node, networks=networks, transitions_graph=transitions_graph
             )
-            print(f"Node: {node} -> Page-Rank: {pr}, Iteration: {i + 1}")
+            print(f"#{i+1} => [Node: {node} / Page-Rank: {pr}]")
 
 
 def estimate_probability(
@@ -60,6 +55,5 @@ if __name__ == "__main__":
     page_rank(
         networks=networks,
         transitions_graph=transitions_graph,
-        teleportation=TELEPORTATION,
-        max_iteration=12
+        teleportation=TELEPORTATION
     )
